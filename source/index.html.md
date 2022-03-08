@@ -4849,7 +4849,8 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.GetTrades.with_call(
-            bisq_messages.GetTradesRequest(category='OPEN'),
+            bisq_messages.GetTradesRequest(
+                category=bisq_messages.GetTradesRequest.Category.CLOSED),
             metadata=[('password', api_password)])
         print('Response: ' + str(response))
     except grpc.RpcError as rpc_error:
