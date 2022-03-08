@@ -11112,9 +11112,61 @@ Offer object in the daemon, which holds too much state to be sent to clients.</p
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
-<p>The Bisq gRPC API uses the following error codes:</p>
+<p>Errors sent from the Java-based gRPC daemon to gRPC clients are instances
+of <a href="https://github.com/grpc/grpc-java/blob/master/api/src/main/java/io/grpc/StatusRuntimeException.java">StatusRuntimeException</a>
+. For non-Java gRPC clients, the equivelant gRPC error type is sent. Exceptions sent to gRPC clients contain
+a <a href="https://github.com/grpc/grpc-java/blob/master/api/src/main/java/io/grpc/Status.java">Status.Code</a> to aid client-side
+error handling. The Bisq API daemon does not use all sixteen of the gRPC status codes, below are the currently used
+status codes.</p>
 
-<p>Table of codes &amp; descriptions goes below.</p>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>UNKNOWN</td>
+<td>2</td>
+<td>An unexpected error occurred in the daemon, and it was not mapped to a meaningful status code.</td>
+</tr>
+<tr>
+<td>INVALID_ARGUMENT</td>
+<td>3</td>
+<td>An invalid parameter value was sent to the daemon.</td>
+</tr>
+<tr>
+<td>NOT_FOUND</td>
+<td>5</td>
+<td>A requested entity was not found.</td>
+</tr>
+<tr>
+<td>ALREADY_EXISTS</td>
+<td>6</td>
+<td>An attempt to change some value or state in the daemon failed because the value or state already exists.</td>
+</tr>
+<tr>
+<td>FAILED_PRECONDITION</td>
+<td>9</td>
+<td>An attempted operation failed because some pre-condition was not met.</td>
+</tr>
+<tr>
+<td>UNIMPLEMENTED</td>
+<td>12</td>
+<td>An attempt was made to perform an unsupported operation.</td>
+</tr>
+<tr>
+<td>UNAVAILABLE</td>
+<td>14</td>
+<td>Some resource is not available at the time requested.</td>
+</tr>
+<tr>
+<td>UNAUTHENTICATED</td>
+<td>16</td>
+<td>The gRPC client did not correctly authenticate to the daemon.</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
