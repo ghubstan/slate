@@ -8114,7 +8114,8 @@ Name | Type | Description
  ------------- | ------------- | ------------- 
  id | string | The unique identifier of the payment account. 
  payment_method_id | string | The unique identifier of the payment method. 
- address | string | The optional altcoin wallet address associated with the (altcoin) payment account.
+ address | string | The optional altcoin wallet address associated with the (altcoin) payment account. 
+ payment_details | string | The optional payment details, if available.
 
 ## PaymentMethod
 
