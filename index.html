@@ -875,58 +875,13 @@ the <a href="https://github.com/bisq-network/bisq/blob/master/apitest/docs/api-b
 plugins.</li>
 </ul>
 
-<p>Instructions for generating the Bisq API Python stubs follow.</p>
-<h3 id='install-python-plugins-for-protoc-compiler'>Install python plugins for protoc compiler</h3>
-<p><code>$ python -m pip install grpcio grpcio-tools</code></br>
-    <code>$ pip3 install mypy-protobuf</code></p>
-<h3 id='download-the-bisq-proto-files-to-your-python-project'>Download the Bisq .proto files to your Python project</h3>
-<p>If your Python scripts are located in a directory named  <code>my-api-scripts</code>, open a terminal in that directory and
-download the Bisq .proto files to a directory named <code>my-api-scripts/proto</code>:</p>
+<p>You can download the Bisq protobuf (.proto) files by running:</p>
 
-<p><code>$ export PROTO_PATH=&quot;proto&quot;</code></br>
-    <code>$ curl -o $PROTO_PATH/pb.proto https://raw.githubusercontent.com/bisq-network/bisq/master/proto/src/main/proto/pb.proto</code></br>
-    <code>$ curl -o $PROTO_PATH/grpc.proto https://raw.githubusercontent.com/bisq-network/bisq/master/proto/src/main/proto/grpc.proto</code></p>
-<h3 id='generate-bisq-api-grpc-python-stubs'>Generate Bisq API gRPC Python stubs</h3>
-<p>The location of Python code generated from downloaded Bisq .proto files <em>must</em> be <code>&lt;python-examples-dir&gt;/bisq/api</code>, or
-this document&#39;s example Python scripts will not be able to import them at runtime. Put another way, if your Python
-scripts are in a folder named <code>my-api-scripts</code>, the <code>protoc</code> compiler must generate Python stubs
-in <code>my-api-scripts/bisq/api</code>. Each step of the setup is explained below.</p>
+<p><code>proto-downloader/download-bisq-protos.sh</code></p>
 
-<p>If</p>
+<p>You can build Python .proto stubs, install Python example dependencies, and package the examples by running:</p>
 
-<ul>
-<li>Python scripts are located in  <code>my-api-scripts</code></li>
-<li>Downloaded Bisq .proto files are located in  <code>my-api-scripts/proto</code></li>
-<li>A terminal is opened in directory <code>my-api-scripts</code></li>
-</ul>
-
-<p>Generate API Python stubs in <code>my-api-scripts/bisq/api</code>, as follows:</p>
-
-<p><code>$ export PROTO_PATH=&quot;proto&quot;</code></br>
-    <code>$ export PYTHON_PROTO_OUT_PATH=&quot;bisq/api&quot;</code></br>
-    </br>
-    <code>$ python3 -m grpc_tools.protoc \</code></br>
-        <code>--proto_path=$PROTO_PATH \</code></br>
-        <code>--python_out=$PYTHON_PROTO_OUT_PATH \</code></br>
-        <code>--grpc_python_out=$PYTHON_PROTO_OUT_PATH $PROTO_PATH/*.proto</code></br>
-    </br>
-    <code>$ protoc --proto_path=$PROTO_PATH --python_out=$PYTHON_PROTO_OUT_PATH $PROTO_PATH/*.proto</code></br>
-    </br>
-    <code># Hack two internal import statements in the generated Python code to prepend the bisq.api package name.</code></br>
-    <code># See why @ https://github.com/protocolbuffers/protobuf/issues/1491</code></br>
-    </br>
-    <code>sed -i &#39;s/import pb_pb2 as pb__pb2/import bisq.api.pb_pb2 as pb__pb2/g&#39; $PYTHON_PROTO_OUT_PATH/grpc_pb2.py</code></br>
-    <code>sed -i &#39;s/import grpc_pb2 as grpc__pb2/import bisq.api.grpc_pb2 as grpc__pb2/g&#39; $PYTHON_PROTO_OUT_PATH/grpc_pb2_grpc.py</code></p>
-
-<p>Now you should be able to import the Bisq gRPC API stubs into scripts located in <code>my-api-scripts</code>, using the following
-Python import statements:</p>
-
-<p><code>import grpc</code></br>
-    <code>import bisq.api.grpc_pb2 as bisq_messages</code></br>
-    <code>import bisq.api.grpc_pb2_grpc as bisq_service</code></p>
-<h3 id='todo-simplify-these-python-example-setup-sections'><em>TODO Simplify these Python example setup sections...</em></h3>
-<p><em>if more experienced Python developers can demonstrate an easier, more flexible way of generating protobuf / grpc stubs
-without having to manually hack internal import statements.</em></p>
+<p><code>python-examples/run-setup.sh</code></p>
 <h1 id='authentication'>Authentication</h1>
 <p>An API password option <code>--apiPassword=&lt;api-password&gt;</code> is passed in the daemon&#39;s start command.</p>
 
