@@ -315,8 +315,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -499,8 +499,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -657,8 +657,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -904,8 +904,8 @@ from builtins import print
 
 import grpc
 
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -1229,8 +1229,8 @@ from builtins import print
 
 import grpc
 
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 EDITED_USD_OFFER_ID = '44736-16df6819-d98b-4f13-87dd-50087c464fac-184'
 
@@ -1484,8 +1484,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -1638,8 +1638,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -1790,8 +1790,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -1945,8 +1945,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -2098,8 +2098,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -2255,8 +2255,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -2411,8 +2411,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -2561,8 +2561,8 @@ from builtins import print
 
 import grpc
 
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -2731,8 +2731,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -2897,8 +2897,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -3057,8 +3057,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -3209,8 +3209,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -3371,8 +3371,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -3524,8 +3524,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -3680,8 +3680,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -3835,8 +3835,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -3986,8 +3986,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -4135,8 +4135,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -4286,8 +4286,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -4437,8 +4437,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -4586,8 +4586,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -4735,8 +4735,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -4895,8 +4895,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -5088,8 +5088,8 @@ from builtins import print
 
 import grpc
 
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -5385,8 +5385,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -5541,8 +5541,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -5698,8 +5698,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -5848,8 +5848,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -6005,8 +6005,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -6155,8 +6155,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -6302,8 +6302,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -6449,8 +6449,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -6595,8 +6595,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -6748,8 +6748,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -6910,8 +6910,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -7068,8 +7068,8 @@ from builtins import print
 
 import grpc
 
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -7218,8 +7218,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -7369,8 +7369,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -7522,8 +7522,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
@@ -7674,8 +7674,8 @@ from builtins import print
 import grpc
 
 # from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
+import python_examples.bisqapi.grpc_pb2 as bisq_messages
+import python_examples.bisqapi.grpc_pb2_grpc as bisq_service
 
 
 def main():
