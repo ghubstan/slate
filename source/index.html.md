@@ -84,9 +84,9 @@ directory (`my-api-app`), and the Bisq .proto files are located in a directory n
 
 ### Generate Bisq API protobuf stubs using Gradle grpc-java plugin (recommended)
 
-You can generate the API stubs in a Gradle project using the [protoc-gen-grpc-java](https://github.com/grpc/grpc-java)
-plugin. The [build.gradle](https://github.com/ghubstan/bisq-grpc-api-doc/blob/main/build.gradle)
-file used in the project that builds this document could be modified to suit you.
+You can generate Java API stubs in a Gradle project using the [protoc-gen-grpc-java](https://github.com/grpc/grpc-java)
+plugin. Try the [build.gradle](https://github.com/ghubstan/bisq-api-reference/blob/main/java-examples/build.gradle)
+file used by the project providing the Java examples for this document; it should work for you.
 
 _Note: You can also generate stubs with [protoc-gen-grpc-java](https://github.com/grpc/grpc-java) in maven projects._
 
@@ -210,7 +210,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetVersionGrpc;
 import bisq.proto.grpc.GetVersionRequest;
@@ -239,7 +239,7 @@ public class GetVersion extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -310,8 +310,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -323,9 +324,10 @@ def main():
     grpc_service_stub = bisq_service.GetVersionStub(grpc_channel)
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
-        response = grpc_service_stub.GetVersion.with_call(bisq_messages.GetVersionRequest(),
-                                                          metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        response = grpc_service_stub.GetVersion.with_call(
+            bisq_messages.GetVersionRequest(),
+            metadata=[('password', api_password)])
+        print('Response: ' + response[0].version)
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -357,7 +359,7 @@ Name | Type | Description
 ```
 
 ```java
-// Help Service is for CLI users.
+package rpccalls;// Help Service is for CLI users.
 ```
 ```python
 # Help Service is for CLI users.
@@ -390,7 +392,7 @@ The Offers service provides rpc methods for creating, editing, listing, and canc
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.CancelOfferRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -421,7 +423,7 @@ public class CancelOffer extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -492,8 +494,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -506,7 +509,7 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.CancelOffer.with_call(
-            bisq_messages.CancelOfferRequest(id='NWSWO-1a704b3f-c8c9-4bed-93bf-06aefaba3b12-182'),
+            bisq_messages.CancelOfferRequest(id='ubwhog-fef370c3-3fe7-4ac5-b0d6-8de850916642-184'),
             metadata=[('password', api_password)])
         print('Response: ' + str(response))
     except grpc.RpcError as rpc_error:
@@ -544,7 +547,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.CreateBsqSwapOfferRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -578,7 +581,7 @@ public class CreateBsqSwapOffer extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -649,8 +652,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -733,7 +737,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.CreateOfferRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -823,7 +827,7 @@ public class CreateOffer extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -895,9 +899,10 @@ public class BaseJavaExample {
 ```
 ```python
 # from getpass import getpass
-import grpc
 import time
 from builtins import print
+
+import grpc
 
 import bisq.api.grpc_pb2 as bisq_messages
 import bisq.api.grpc_pb2_grpc as bisq_service
@@ -937,7 +942,7 @@ def fixed_price_usd_request():
                                             amount=12500000,
                                             min_amount=6250000,
                                             buyer_security_deposit_pct=20.00,
-                                            payment_account_id='b6bed12d-92e3-4241-9975-2b3929476252',
+                                            payment_account_id='af852e11-f2db-48bd-82f5-123047b41f0c',
                                             maker_fee_currency_code='BSQ')
 
 
@@ -950,7 +955,7 @@ def market_based_price_usd_request():
                                             amount=12500000,
                                             min_amount=6250000,
                                             buyer_security_deposit_pct=20.00,
-                                            payment_account_id='b6bed12d-92e3-4241-9975-2b3929476252',
+                                            payment_account_id='af852e11-f2db-48bd-82f5-123047b41f0c',
                                             maker_fee_currency_code='BSQ')
 
 
@@ -962,7 +967,7 @@ def fixed_price_xmr_request():
                                             amount=12500000,
                                             min_amount=6250000,
                                             buyer_security_deposit_pct=20.00,
-                                            payment_account_id='02038bb3-02a4-4970-a392-194ab02f9c95',
+                                            payment_account_id='7d52d9b6-e943-4625-a063-f53b09381bf2',
                                             maker_fee_currency_code='BTC')
 
 
@@ -1044,7 +1049,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.EditOfferRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -1147,7 +1152,7 @@ public class EditOffer extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -1219,12 +1224,15 @@ public class BaseJavaExample {
 ```
 ```python
 # from getpass import getpass
-import grpc
 import time
 from builtins import print
 
+import grpc
+
 import bisq.api.grpc_pb2 as bisq_messages
 import bisq.api.grpc_pb2_grpc as bisq_service
+
+EDITED_USD_OFFER_ID = '44736-16df6819-d98b-4f13-87dd-50087c464fac-184'
 
 
 def main():
@@ -1275,21 +1283,21 @@ def main():
 
 def disable_offer_request():
     return bisq_messages.EditOfferRequest(
-        id='PEIUC-9b09c2d8-8485-47d7-b7e9-d01d320e9477-182',
+        id=EDITED_USD_OFFER_ID,
         edit_type=bisq_messages.EditOfferRequest.EditType.ACTIVATION_STATE_ONLY,
         enable=0)  # If enable=-1: ignore enable param, enable=0: disable offer, enable=1: enable offer
 
 
 def enable_offer_request():
     return bisq_messages.EditOfferRequest(
-        id='PEIUC-9b09c2d8-8485-47d7-b7e9-d01d320e9477-182',
+        id=EDITED_USD_OFFER_ID,
         edit_type=bisq_messages.EditOfferRequest.EditType.ACTIVATION_STATE_ONLY,
         enable=1)  # If enable=-1: ignore enable param, enable=0: disable offer, enable=1: enable offer
 
 
 def edit_fixed_price_request():
     return bisq_messages.EditOfferRequest(
-        id='PEIUC-9b09c2d8-8485-47d7-b7e9-d01d320e9477-182',
+        id=EDITED_USD_OFFER_ID,
         price='42000.50',
         edit_type=bisq_messages.EditOfferRequest.EditType.FIXED_PRICE_ONLY,
         enable=-1)  # If enable=-1: ignore enable param, enable=0: disable offer, enable=1: enable offer
@@ -1297,7 +1305,7 @@ def edit_fixed_price_request():
 
 def edit_fixed_price_and_enable_request():
     return bisq_messages.EditOfferRequest(
-        id='PEIUC-9b09c2d8-8485-47d7-b7e9-d01d320e9477-182',
+        id=EDITED_USD_OFFER_ID,
         price='43000.50',
         edit_type=bisq_messages.EditOfferRequest.EditType.FIXED_PRICE_AND_ACTIVATION_STATE,
         enable=1)  # If enable=-1: ignore enable param, enable=0: disable offer, enable=1: enable offer
@@ -1305,7 +1313,7 @@ def edit_fixed_price_and_enable_request():
 
 def edit_price_margin_request():
     return bisq_messages.EditOfferRequest(
-        id='PEIUC-9b09c2d8-8485-47d7-b7e9-d01d320e9477-182',
+        id=EDITED_USD_OFFER_ID,
         use_market_based_price=True,
         market_price_margin_pct=5.00,
         edit_type=bisq_messages.EditOfferRequest.EditType.MKT_PRICE_MARGIN_ONLY,
@@ -1314,7 +1322,7 @@ def edit_price_margin_request():
 
 def edit_trigger_price_request():
     return bisq_messages.EditOfferRequest(
-        id='PEIUC-9b09c2d8-8485-47d7-b7e9-d01d320e9477-182',
+        id=EDITED_USD_OFFER_ID,
         trigger_price='40000.0000',
         edit_type=bisq_messages.EditOfferRequest.EditType.TRIGGER_PRICE_ONLY,
         enable=-1)  # If enable=-1: ignore enable param, enable=0: disable offer, enable=1: enable offer
@@ -1369,7 +1377,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetOfferRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -1400,7 +1408,7 @@ public class GetBsqSwapOffer extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -1471,8 +1479,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -1485,9 +1494,9 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.GetBsqSwapOffer.with_call(
-            bisq_messages.GetOfferRequest(id='gs1dudwr-263fadaf-bb79-4960-935a-5eb272fcff2f-182'),
+            bisq_messages.GetOfferRequest(id='VZLGFPV-e8dd2f8c-fc90-4509-8f30-e0bb95815b46-184'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].bsq_swap_offer))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -1522,7 +1531,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetBsqSwapOffersRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -1553,7 +1562,7 @@ public class GetBsqSwapOffers extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -1624,8 +1633,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -1638,9 +1648,9 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.GetBsqSwapOffers.with_call(
-            bisq_messages.GetBsqSwapOffersRequest(direction='BUY'),
+            bisq_messages.GetBsqSwapOffersRequest(direction='SELL'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].bsq_swap_offers))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -1673,7 +1683,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetMyOfferRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -1704,7 +1714,7 @@ public class GetMyBsqSwapOffer extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -1775,8 +1785,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -1789,9 +1800,9 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.GetMyBsqSwapOffer.with_call(
-            bisq_messages.GetMyOfferRequest(id='lclcnqzk-870599d8-59c5-4776-979f-cfba4aad91e7-182'),
+            bisq_messages.GetMyOfferRequest(id='gzcvxum-63c23b0b-6acd-49ba-a956-55e406994da1-184'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].bsq_swap_offer))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -1827,7 +1838,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetBsqSwapOffersRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -1858,7 +1869,7 @@ public class GetMyBsqSwapOffers extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -1929,8 +1940,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -1945,7 +1957,8 @@ def main():
         response = grpc_service_stub.GetMyBsqSwapOffers.with_call(
             bisq_messages.GetBsqSwapOffersRequest(direction='BUY'),  # My buy BTC for BSQ swap offers
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        offers = list(response[0].bsq_swap_offers)
+        print('Response: ' + str(offers))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -1978,7 +1991,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetMyOfferRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -2009,7 +2022,7 @@ public class GetMyOffer extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -2080,8 +2093,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -2094,9 +2108,9 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.GetMyOffer.with_call(
-            bisq_messages.GetMyOfferRequest(id='L8xlRE-114612d6-f5db-4218-a0b3-9977934f69a3-182'),
+            bisq_messages.GetMyOfferRequest(id='QusccrDV-47ae5521-bda1-4f3c-801b-5c193f957df7-184'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].offer))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -2133,7 +2147,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetMyOffersRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -2165,7 +2179,7 @@ public class GetMyOffers extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -2236,8 +2250,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -2250,10 +2265,12 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.GetMyOffers.with_call(
-            bisq_messages.GetMyOffersRequest(direction='BUY',
-                                             currency_code='USD'),
+            bisq_messages.GetMyOffersRequest(
+                direction='BUY',
+                currency_code='USD'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        offers = list(response[0].offers)
+        print('Response: ' + str(offers))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -2287,7 +2304,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetOfferRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -2318,7 +2335,7 @@ public class GetOffer extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -2389,8 +2406,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -2403,9 +2421,9 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.GetOffer.with_call(
-            bisq_messages.GetOfferRequest(id='L8xlRE-114612d6-f5db-4218-a0b3-9977934f69a3-182'),
+            bisq_messages.GetOfferRequest(id='VZLGFPV-e8dd2f8c-fc90-4509-8f30-e0bb95815b46-184'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].offer))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -2436,7 +2454,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetOfferCategoryRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -2467,7 +2485,7 @@ public class GetOfferCategory extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -2539,8 +2557,9 @@ public class BaseJavaExample {
 ```
 ```python
 # from getpass import getpass
-import grpc
 from builtins import print
+
+import grpc
 
 import bisq.api.grpc_pb2 as bisq_messages
 import bisq.api.grpc_pb2_grpc as bisq_service
@@ -2552,8 +2571,9 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.GetOfferCategory.with_call(
-            bisq_messages.GetOfferCategoryRequest(id='L8xlRE-114612d6-f5db-4218-a0b3-9977934f69a3-182',
-                                                  is_my_offer=False),
+            bisq_messages.GetOfferCategoryRequest(
+                id='VZLGFPV-e8dd2f8c-fc90-4509-8f30-e0bb95815b46-184',
+                is_my_offer=False),
             metadata=[('password', api_password)])
         print('Response: ' + str(response[0].offer_category))
     except grpc.RpcError as rpc_error:
@@ -2603,7 +2623,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetOffersRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -2635,7 +2655,7 @@ public class GetOffers extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -2706,8 +2726,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -2720,10 +2741,12 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.GetOffers.with_call(
-            bisq_messages.GetOffersRequest(direction='BUY',
-                                           currency_code='USD'),
+            bisq_messages.GetOffersRequest(
+                direction='SELL',
+                currency_code='USD'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        offers = list(response[0].offers)
+        print('Response: ' + str(offers))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -2754,7 +2777,7 @@ The PaymentAccounts service provides rpc methods for creating fiat and crypto cu
 ## RPC Method CreateCryptoCurrencyPaymentAccount
 ```shell
 #!/bin/bash
-./bisq-cli --password=xyz --port=9998 createcryptopaymentacct
+./bisq-cli --password=xyz --port=9998 createcryptopaymentacct \
   --account-name="My XMR Payment Account" \
   --currency-code=XMR \
   --address=4AsjtNXChh3Va58czCWHjn9S8ZFnsxggGZoSePauBHmSMr8vY5aBSqrPtQ9Y9M1iwkBHxcuTWXJsJ4NDATQjQJyKBXR7WP7 \
@@ -2763,7 +2786,7 @@ The PaymentAccounts service provides rpc methods for creating fiat and crypto cu
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.CreateCryptoCurrencyPaymentAccountRequest;
 import bisq.proto.grpc.PaymentAccountsGrpc;
@@ -2798,7 +2821,7 @@ public class CreateCryptoCurrencyPaymentAccount extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -2869,8 +2892,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -2889,7 +2913,7 @@ def main():
                 address='472CJ9TADoeVabhAe6byZQN4yqAFA4morKiyzb8DfLTj4hcQvsXNHxJUNYMw1JDmMALkQ3Bwmyn4aZYST7DzEw9nUeUTKVL',
                 trade_instant=False),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].payment_account))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -2925,7 +2949,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.CreatePaymentAccountRequest;
 import bisq.proto.grpc.PaymentAccountsGrpc;
@@ -2957,7 +2981,7 @@ public class CreatePaymentAccount extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -3028,8 +3052,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -3041,10 +3066,13 @@ def main():
     grpc_service_stub = bisq_service.PaymentAccountsStub(grpc_channel)
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
+        # Convert a .json form to a string and send it in the request.
+        with open('/tmp/sepa-alice.json', 'r') as file:
+            json = file.read()
         response = grpc_service_stub.CreatePaymentAccount.with_call(
-            bisq_messages.CreatePaymentAccountRequest(payment_account_form='/tmp/swift.json'),
+            bisq_messages.CreatePaymentAccountRequest(payment_account_form=json),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].payment_account))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -3076,7 +3104,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetCryptoCurrencyPaymentMethodsRequest;
 import bisq.proto.grpc.PaymentAccountsGrpc;
@@ -3105,7 +3133,7 @@ public class GetCryptoCurrencyPaymentMethods extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -3176,8 +3204,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -3192,7 +3221,10 @@ def main():
         response = grpc_service_stub.GetCryptoCurrencyPaymentMethods.with_call(
             bisq_messages.GetCryptoCurrencyPaymentMethodsRequest(),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        payment_methods = list(response[0].payment_methods)
+        print('Response contains {0} payment methods: '.format(len(payment_methods)))
+        for payment_method in payment_methods:
+            print('\t{0}'.format(payment_method.id))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -3223,7 +3255,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetPaymentAccountFormRequest;
 import bisq.proto.grpc.PaymentAccountsGrpc;
@@ -3263,7 +3295,7 @@ public class GetPaymentAccountForm extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -3334,8 +3366,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -3350,7 +3383,10 @@ def main():
         response = grpc_service_stub.GetPaymentAccountForm.with_call(
             bisq_messages.GetPaymentAccountFormRequest(payment_method_id='SWIFT'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        json_string = response[0].payment_account_form_json
+        print('Response: ' + json_string)
+        # The client should save this json string to file, manually fill in the form
+        # fields, then use it as shown in the create_payment_account.py example.
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -3380,11 +3416,10 @@ Name | Type | Description
 # Get list of all saved payment accounts, including altcoin accounts.
 ./bisq-cli --password=xyz --port=9998 getpaymentaccts
 
-
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetPaymentAccountsRequest;
 import bisq.proto.grpc.PaymentAccountsGrpc;
@@ -3413,7 +3448,7 @@ public class GetPaymentAccounts extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -3484,8 +3519,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -3500,7 +3536,15 @@ def main():
         response = grpc_service_stub.GetPaymentAccounts.with_call(
             bisq_messages.GetPaymentAccountsRequest(),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        payment_accounts = list(response[0].payment_accounts)
+        print('Response: {0} payment accounts'.format(len(payment_accounts)))
+        print('\t\t{0:<40} {1:<24} {2:<20} {3:<8}'.format('ID', 'Name', 'Payment Method', 'Trade Currency'))
+        for payment_account in payment_accounts:
+            print('\t\t{0:<40} {1:<24} {2:<20} {3:<8}'
+                  .format(payment_account.id,
+                          payment_account.account_name,
+                          payment_account.payment_method.id,
+                          payment_account.selected_trade_currency.code))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -3531,7 +3575,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetPaymentMethodsRequest;
 import bisq.proto.grpc.PaymentAccountsGrpc;
@@ -3560,7 +3604,7 @@ public class GetPaymentMethods extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -3631,8 +3675,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -3647,7 +3692,10 @@ def main():
         response = grpc_service_stub.GetPaymentMethods.with_call(
             bisq_messages.GetPaymentMethodsRequest(),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        payment_methods = list(response[0].payment_methods)
+        print('Response: {0} payment methods'.format(len(payment_methods)))
+        for payment_method in payment_methods:
+            print('\t\t{0}'.format(payment_method.id))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -3680,7 +3728,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.MarketPriceRequest;
 import bisq.proto.grpc.PriceGrpc;
@@ -3711,7 +3759,7 @@ public class GetMarketPrice extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -3782,8 +3830,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -3832,7 +3881,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.ShutdownServerGrpc;
 import bisq.proto.grpc.StopRequest;
@@ -3861,7 +3910,7 @@ public class Stop extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -3932,8 +3981,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -3978,7 +4028,7 @@ The Trades service provides rpc methods for taking, executing, and listing trade
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.CloseTradeRequest;
 import bisq.proto.grpc.TradesGrpc;
@@ -4009,7 +4059,7 @@ public class CloseTrade extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -4080,8 +4130,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -4128,7 +4179,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.ConfirmPaymentReceivedRequest;
 import bisq.proto.grpc.TradesGrpc;
@@ -4159,7 +4210,7 @@ public class ConfirmPaymentReceived extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -4230,8 +4281,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -4278,7 +4330,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.ConfirmPaymentStartedRequest;
 import bisq.proto.grpc.TradesGrpc;
@@ -4309,7 +4361,7 @@ public class ConfirmPaymentStarted extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -4380,8 +4432,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -4426,7 +4479,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.FailTradeRequest;
 import bisq.proto.grpc.TradesGrpc;
@@ -4457,7 +4510,7 @@ public class FailTrade extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -4528,8 +4581,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -4542,7 +4596,7 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.FailTrade.with_call(
-            bisq_messages.FailTradeRequest(trade_id='83e8b2e2-51b6-4f39-a748-3ebd29c22aea'),
+            bisq_messages.FailTradeRequest(trade_id='HDCXKUR-1cfb39e9-68b9-4772-8ae0-abceb8339c90-184'),
             metadata=[('password', api_password)])
         print('Response: ' + str(response))
     except grpc.RpcError as rpc_error:
@@ -4574,7 +4628,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetTradeRequest;
 import bisq.proto.grpc.TradesGrpc;
@@ -4605,7 +4659,7 @@ public class GetTrade extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -4676,8 +4730,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -4690,9 +4745,9 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.GetTrade.with_call(
-            bisq_messages.GetTradeRequest(trade_id='83e8b2e2-51b6-4f39-a748-3ebd29c22aea'),
+            bisq_messages.GetTradeRequest(trade_id='87533-abc12dcd-b12f-499d-8594-e6ee39630d50-184'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].trade))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -4721,18 +4776,18 @@ Name | Type | Description
 #!/bin/bash
 # Get currently open trades.
 ./bisq-cli --password=xyz --port=9998 gettrades
-./bisq-cli --password=xyz --port=9998 gettrades --category=OPEN
+./bisq-cli --password=xyz --port=9998 gettrades --category=open
 
 # Get completed trades.
-./bisq-cli --password=xyz --port=9998 gettrades --category=CLOSED
+./bisq-cli --password=xyz --port=9998 gettrades --category=closed
 
 # Get failed trades.
-./bisq-cli --password=xyz --port=9998 gettrades --category=FAILED
+./bisq-cli --password=xyz --port=9998 gettrades --category=failed
 
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetTradesRequest;
 import bisq.proto.grpc.TradesGrpc;
@@ -4764,7 +4819,7 @@ public class GetTrades extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -4835,8 +4890,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -4850,9 +4906,10 @@ def main():
     try:
         response = grpc_service_stub.GetTrades.with_call(
             bisq_messages.GetTradesRequest(
-                category=bisq_messages.GetTradesRequest.Category.CLOSED),
+                category=bisq_messages.GetTradesRequest.Category.OPEN),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        trades = list(response[0].trades)
+        print('Response: ' + str(trades))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -4902,7 +4959,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetOfferCategoryRequest;
 import bisq.proto.grpc.OffersGrpc;
@@ -4955,7 +5012,7 @@ public class TakeOffer extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -5027,8 +5084,9 @@ public class BaseJavaExample {
 ```
 ```python
 # from getpass import getpass
-import grpc
 from builtins import print
+
+import grpc
 
 import bisq.api.grpc_pb2 as bisq_messages
 import bisq.api.grpc_pb2_grpc as bisq_service
@@ -5089,7 +5147,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.TradesGrpc;
 import bisq.proto.grpc.UnFailTradeRequest;
@@ -5120,7 +5178,7 @@ public class UnFailTrade extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -5191,29 +5249,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
-from builtins import print
-
-# from getpass import getpass
-import bisq.api.grpc_pb2 as bisq_messages
-import bisq.api.grpc_pb2_grpc as bisq_service
-
-
-def main():
-    grpc_channel = grpc.insecure_channel('localhost:9998')
-    grpc_service_stub = bisq_service.TradesStub(grpc_channel)
-    api_password: str = 'xyz'  # getpass("Enter API password: ")
-    try:
-        response = grpc_service_stub.UnFailTrade.with_call(
-            bisq_messages.UnFailTradeRequest(trade_id='83e8b2e2-51b6-4f39-a748-3ebd29c22aea'),
-            metadata=[('password', api_password)])
-        print('Response: ' + str(response))
-    except grpc.RpcError as rpc_error:
-        print('gRPC API Exception: %s', rpc_error)
-
-
-if __name__ == '__main__':
-    main()
 ```
 ### Unary RPC
 Unfail a failed trade.
@@ -5241,7 +5276,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.TradesGrpc;
 import bisq.proto.grpc.WithdrawFundsRequest;
@@ -5274,7 +5309,7 @@ public class WithdrawFunds extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -5345,8 +5380,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -5398,7 +5434,7 @@ The Wallets service provides rpc methods for basic wallet operations such as che
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetAddressBalanceRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -5429,7 +5465,7 @@ public class GetAddressBalance extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -5500,8 +5536,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -5516,7 +5553,12 @@ def main():
         response = grpc_service_stub.GetAddressBalance.with_call(
             bisq_messages.GetAddressBalanceRequest(address='mwLYmweQf2dCgAqQCb3qU2UbxBycVBi2PW'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        address_balance_info = response[0].address_balance_info
+        print('Address = {0}\nAvailable Balance = {1} sats\nUnused? {2}\nNum confirmations of most recent tx = {3}'
+              .format(address_balance_info.address,
+                      address_balance_info.balance,
+                      address_balance_info.is_address_unused,
+                      address_balance_info.num_confirmations))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -5550,7 +5592,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetBalancesRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -5580,7 +5622,7 @@ public class GetBalances extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -5651,8 +5693,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -5667,7 +5710,8 @@ def main():
         response = grpc_service_stub.GetBalances.with_call(
             bisq_messages.GetBalancesRequest(),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('BTC Balances: ' + str(response[0].balances.bsq))
+        print('BSQ Balances: ' + str(response[0].balances.btc))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -5699,7 +5743,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetFundingAddressesRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -5728,7 +5772,7 @@ public class GetFundingAddresses extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -5799,8 +5843,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -5815,7 +5860,14 @@ def main():
         response = grpc_service_stub.GetFundingAddresses.with_call(
             bisq_messages.GetFundingAddressesRequest(),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        funding_addresses = list(response[0].address_balance_info)
+        print('Response contains {0} funding addresses:'.format(len(funding_addresses)))
+        for address_balance_info in funding_addresses:
+            print('Address = {0}  Available Balance = {1} sats  Unused? {2}  Num confirmations of most recent tx = {3}'
+                  .format(address_balance_info.address,
+                          address_balance_info.balance,
+                          address_balance_info.is_address_unused,
+                          address_balance_info.num_confirmations))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -5846,7 +5898,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetTransactionRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -5877,7 +5929,7 @@ public class GetTransaction extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -5948,8 +6000,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -5963,9 +6016,9 @@ def main():
     try:
         response = grpc_service_stub.GetTransaction.with_call(
             bisq_messages.GetTransactionRequest(
-                tx_id='76ac4f6a4ad09e2e2c223d22509b8fc129fd8eb06851abee6b416ca1efaceb2c'),
+                tx_id='907cf2b9ec2970653a9d7b5384b729037bfdf213d3fa38797704a7adb4c7217e'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].tx_info))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -5997,7 +6050,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetTxFeeRateRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -6026,7 +6079,7 @@ public class GetTxFeeRate extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -6097,8 +6150,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -6113,7 +6167,7 @@ def main():
         response = grpc_service_stub.GetTxFeeRate.with_call(
             bisq_messages.GetTxFeeRateRequest(),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].tx_fee_rate_info))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -6143,7 +6197,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.GetUnusedBsqAddressRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -6172,7 +6226,7 @@ public class GetUnusedBsqAddress extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -6243,8 +6297,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -6259,7 +6314,7 @@ def main():
         response = grpc_service_stub.GetUnusedBsqAddress.with_call(
             bisq_messages.GetUnusedBsqAddressRequest(),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].address))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -6289,7 +6344,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.LockWalletRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -6318,7 +6373,7 @@ public class LockWallet extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -6389,8 +6444,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -6434,7 +6490,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.RemoveWalletPasswordRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -6463,7 +6519,7 @@ public class RemoveWalletPassword extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -6534,8 +6590,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -6582,7 +6639,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.SendBsqRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -6615,7 +6672,7 @@ public class SendBsq extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -6686,8 +6743,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -6705,7 +6763,7 @@ def main():
                 amount='10.00',
                 tx_fee_rate='10'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].tx_info))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -6742,7 +6800,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.SendBtcRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -6776,7 +6834,7 @@ public class SendBtc extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -6847,8 +6905,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -6867,7 +6926,7 @@ def main():
                 tx_fee_rate='15',
                 memo='Optional memo saved with transaction in Bisq wallet.'),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].tx_info))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -6902,7 +6961,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.SetTxFeeRatePreferenceRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -6933,7 +6992,7 @@ public class SetTxFeeRatePreference extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -7005,8 +7064,9 @@ public class BaseJavaExample {
 ```
 ```python
 # from getpass import getpass
-import grpc
 from builtins import print
+
+import grpc
 
 import bisq.api.grpc_pb2 as bisq_messages
 import bisq.api.grpc_pb2_grpc as bisq_service
@@ -7020,7 +7080,7 @@ def main():
         response = grpc_service_stub.SetTxFeeRatePreference.with_call(
             bisq_messages.SetTxFeeRatePreferenceRequest(tx_fee_rate_preference=20),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].tx_fee_rate_info))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -7053,7 +7113,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.SetWalletPasswordRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -7082,7 +7142,7 @@ public class SetWalletPassword extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -7153,8 +7213,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -7200,7 +7261,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.UnlockWalletRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -7232,7 +7293,7 @@ public class UnlockWallet extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -7303,8 +7364,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -7317,8 +7379,9 @@ def main():
     api_password: str = 'xyz'  # getpass("Enter API password: ")
     try:
         response = grpc_service_stub.UnlockWallet.with_call(
-            bisq_messages.UnlockWalletRequest(password='abc',
-                                              timeout=30),
+            bisq_messages.UnlockWalletRequest(
+                password='abc',
+                timeout=30),
             metadata=[('password', api_password)])
         print('Response: ' + str(response))
     except grpc.RpcError as rpc_error:
@@ -7354,7 +7417,7 @@ This Response has no parameters.
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.UnsetTxFeeRatePreferenceRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -7383,7 +7446,7 @@ public class UnsetTxFeeRatePreference extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -7454,8 +7517,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
@@ -7470,7 +7534,7 @@ def main():
         response = grpc_service_stub.UnsetTxFeeRatePreference.with_call(
             bisq_messages.UnsetTxFeeRatePreferenceRequest(),
             metadata=[('password', api_password)])
-        print('Response: ' + str(response))
+        print('Response: ' + str(response[0].tx_fee_rate_info))
     except grpc.RpcError as rpc_error:
         print('gRPC API Exception: %s', rpc_error)
 
@@ -7502,7 +7566,7 @@ Name | Type | Description
 ```
 
 ```java
-package examples;
+package rpccalls;
 
 import bisq.proto.grpc.VerifyBsqSentToAddressRequest;
 import bisq.proto.grpc.WalletsGrpc;
@@ -7534,7 +7598,7 @@ public class VerifyBsqSentToAddress extends BaseJavaExample {
 // BaseJavaExample
 //////////////////
 
-package examples;
+package rpccalls;
 
 import io.grpc.CallCredentials;
 import io.grpc.ManagedChannel;
@@ -7605,8 +7669,9 @@ public class BaseJavaExample {
 
 ```
 ```python
-import grpc
 from builtins import print
+
+import grpc
 
 # from getpass import getpass
 import bisq.api.grpc_pb2 as bisq_messages
