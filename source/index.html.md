@@ -259,8 +259,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -443,8 +441,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -601,8 +597,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -849,7 +843,6 @@ public class BaseJavaExample {
 ```python
 # from getpass import getpass
 import time
-from builtins import print
 
 import grpc
 
@@ -1174,7 +1167,6 @@ public class BaseJavaExample {
 ```python
 # from getpass import getpass
 import time
-from builtins import print
 
 import grpc
 
@@ -1428,8 +1420,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -1582,8 +1572,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -1734,8 +1722,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -1889,8 +1875,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -2042,8 +2026,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -2199,8 +2181,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -2355,8 +2335,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -2506,7 +2484,7 @@ public class BaseJavaExample {
 ```
 ```python
 # from getpass import getpass
-from builtins import print
+
 
 import grpc
 
@@ -2675,8 +2653,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -2841,8 +2817,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -3001,8 +2975,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -3153,8 +3125,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -3317,7 +3287,6 @@ public class BaseJavaExample {
 ```python
 import os
 import tempfile
-from builtins import print
 
 import grpc
 
@@ -3475,8 +3444,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -3631,8 +3598,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -3786,8 +3751,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -3937,8 +3900,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -4086,8 +4047,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -4237,8 +4196,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -4388,8 +4345,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -4537,8 +4492,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -4686,8 +4639,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -4846,8 +4797,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -5040,7 +4989,7 @@ public class BaseJavaExample {
 ```
 ```python
 # from getpass import getpass
-from builtins import print
+
 
 import grpc
 
@@ -5336,8 +5285,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -5492,8 +5439,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -5649,8 +5594,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -5799,8 +5742,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -5956,8 +5897,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -6106,8 +6045,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -6253,8 +6190,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -6400,8 +6335,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -6546,8 +6479,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -6699,8 +6630,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -6861,8 +6790,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -7020,7 +6947,7 @@ public class BaseJavaExample {
 ```
 ```python
 # from getpass import getpass
-from builtins import print
+
 
 import grpc
 
@@ -7169,8 +7096,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -7320,8 +7245,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -7473,8 +7396,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
@@ -7625,8 +7546,6 @@ public class BaseJavaExample {
 
 ```
 ```python
-from builtins import print
-
 import grpc
 
 # from getpass import getpass
