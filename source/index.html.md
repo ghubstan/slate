@@ -3641,9 +3641,146 @@ Name | Type | Description
 # Service Price
 
 ## RPC Method GetAverageBsqTradePrice
+```shell
+#!/bin/bash
+./bisq-cli --password=xyz --port=9998 getavgbsqprice --days=30
+
+```
+
+```java
+package bisq.rpccalls;
+
+import bisq.proto.grpc.GetAverageBsqTradePriceRequest;
+import bisq.proto.grpc.PriceGrpc;
+import io.grpc.ManagedChannelBuilder;
+
+import static java.lang.String.format;
+import static java.lang.System.out;
+
+public class GetAverageBsqTradePrice extends BaseJavaExample {
+
+    public static void main(String[] args) {
+        try {
+            var channel = ManagedChannelBuilder.forAddress("localhost", 9998).usePlaintext().build();
+            addChannelShutdownHook(channel);
+            var credentials = buildCallCredentials(getApiPassword());
+            var stub = PriceGrpc.newBlockingStub(channel).withCallCredentials(credentials);
+            var request = GetAverageBsqTradePriceRequest.newBuilder().setDays(30).build();
+            var reply = stub.getAverageBsqTradePrice(request);
+            var price = reply.getPrice();
+            out.println(format("30-day avg BTC price: %s, 30-day avg USD price: %s",
+                    price.getBtcPrice(),
+                    price.getUsdPrice()));
+        } catch (Throwable t) {
+            handleError(t);
+        }
+    }
+}
+
+//////////////////
+// BaseJavaExample
+//////////////////
+
+package bisq.rpccalls;
+
+import io.grpc.CallCredentials;
+import io.grpc.ManagedChannel;
+import io.grpc.Metadata;
+import io.grpc.StatusRuntimeException;
+
+import java.util.Scanner;
+import java.util.concurrent.Executor;
+
+import static io.grpc.Metadata.ASCII_STRING_MARSHALLER;
+import static io.grpc.Status.UNAUTHENTICATED;
+import static java.lang.System.*;
+import static java.util.concurrent.TimeUnit.SECONDS;
+
+public class BaseJavaExample {
+
+    static void addChannelShutdownHook(ManagedChannel channel) {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                channel.shutdown().awaitTermination(1, SECONDS);
+            } catch (InterruptedException ex) {
+                throw new IllegalStateException("Error shutting down gRPC channel.", ex);
+            }
+        }));
+    }
+
+    static String getApiPassword() {
+        Scanner scanner = new Scanner(in);
+        out.println("Enter api password:");
+        var apiPassword = "xyz";    // scanner.nextLine();
+        scanner.close();
+        return apiPassword;
+    }
+
+    static CallCredentials buildCallCredentials(String apiPassword) {
+        return new CallCredentials() {
+            @Override
+            public void applyRequestMetadata(RequestInfo requestInfo,
+                                             Executor appExecutor,
+                                             MetadataApplier metadataApplier) {
+                appExecutor.execute(() -> {
+                    try {
+                        var headers = new Metadata();
+                        var passwordKey = Metadata.Key.of("password", ASCII_STRING_MARSHALLER);
+                        headers.put(passwordKey, apiPassword);
+                        metadataApplier.apply(headers);
+                    } catch (Throwable ex) {
+                        metadataApplier.fail(UNAUTHENTICATED.withCause(ex));
+                    }
+                });
+            }
+
+            @Override
+            public void thisUsesUnstableApi() {
+            }
+        };
+    }
+
+    static void handleError(Throwable t) {
+        if (t instanceof StatusRuntimeException) {
+            var grpcErrorStatus = ((StatusRuntimeException) t).getStatus();
+            err.println(grpcErrorStatus.getCode() + ": " + grpcErrorStatus.getDescription());
+        } else {
+            err.println("Error: " + t);
+        }
+    }
+}
+
+```
+```python
+import grpc
+
+# from getpass import getpass
+import bisq.api.grpc_pb2 as bisq_messages
+import bisq.api.grpc_pb2_grpc as bisq_service
+import grpc
+
+
+def main():
+    grpc_channel = grpc.insecure_channel('localhost:9998')
+    grpc_service_stub = bisq_service.PriceStub(grpc_channel)
+    api_password: str = 'xyz'  # getpass("Enter API password: ")
+    try:
+        response = grpc_service_stub.GetAverageBsqTradePrice.with_call(
+            bisq_messages.GetAverageBsqTradePriceRequest(days=30),
+            metadata=[('password', api_password)])
+        price = response[0].price
+        print('Response: ' + '30-day BTC price: ' + price.btc_price + '  30-day USD price: ' + price.usd_pricez)
+    except grpc.RpcError as rpc_error:
+        print('gRPC API Exception: %s', rpc_error)
+
+
+if __name__ == '__main__':
+    main()
+```
 ### Unary RPC
 Get the volume weighted average trade price for BSQ, calculated over N days.
 The response contains the average BSQ trade price in USD to 4 decimal places, and in BTC to 8 decimal places.
+
 
 ### gRPC Request: GetAverageBsqTradePriceRequest
 
