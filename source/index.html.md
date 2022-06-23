@@ -3640,6 +3640,23 @@ Name | Type | Description
 
 # Service Price
 
+## RPC Method GetAverageBsqTradePrice
+### Unary RPC
+Get the volume weighted average trade price for BSQ, calculated over N days.
+The response contains the average BSQ trade price in USD to 4 decimal places, and in BTC to 8 decimal places.
+
+### gRPC Request: GetAverageBsqTradePriceRequest
+
+Name | Type | Description 
+ ------------- | ------------- | ------------- 
+ days | sint32 | The number of days used in the average BSQ trade price calculations.
+
+### gRPC Response: GetAverageBsqTradePriceReply
+
+Name | Type | Description 
+ ------------- | ------------- | ------------- 
+ price | [AverageBsqTradePrice](#averagebsqtradeprice) | The average BSQ trade price in USD to 4 decimal places, and in BTC to 8 decimal places.
+
 ## RPC Method GetMarketPrice
 ```shell
 #!/bin/bash
@@ -5034,7 +5051,7 @@ Take an open offer.
 Name | Type | Description 
  ------------- | ------------- | ------------- 
  offer_id | string | The unique identifier of the offer being taken. 
- payment_account_id | string | The unique identifier of the payment account used to take offer.. 
+ payment_account_id | string | The unique identifier of the payment account used to take offer. 
  taker_fee_currency_code | string | The code of the currency (BSQ or BTC) used to pay the taker's Bisq trade fee.
 
 ### gRPC Response: TakeOfferReply
@@ -5785,6 +5802,151 @@ This Request has no parameters.
 Name | Type | Description 
  ------------- | ------------- | ------------- 
  address_balance_info | [array AddressBalanceInfo](#addressbalanceinfo) | The list of BTC wallet addresses with their balances.
+
+## RPC Method GetNetwork
+```shell
+#!/bin/bash
+./bisq-cli --password=xyz --port=9998 getnetwork
+
+```
+
+```java
+package bisq.rpccalls;
+
+import bisq.proto.grpc.GetNetworkRequest;
+import bisq.proto.grpc.WalletsGrpc;
+import io.grpc.ManagedChannelBuilder;
+
+import static java.lang.System.out;
+
+public class GetNetwork extends BaseJavaExample {
+
+    public static void main(String[] args) {
+        try {
+            var channel = ManagedChannelBuilder.forAddress("localhost", 9998).usePlaintext().build();
+            addChannelShutdownHook(channel);
+            var credentials = buildCallCredentials(getApiPassword());
+            var stub = WalletsGrpc.newBlockingStub(channel).withCallCredentials(credentials);
+            var request = GetNetworkRequest.newBuilder().build();
+            var reply = stub.getNetwork(request);
+            out.println(reply.getNetwork());
+        } catch (Throwable t) {
+            handleError(t);
+        }
+    }
+}
+
+//////////////////
+// BaseJavaExample
+//////////////////
+
+package bisq.rpccalls;
+
+import io.grpc.CallCredentials;
+import io.grpc.ManagedChannel;
+import io.grpc.Metadata;
+import io.grpc.StatusRuntimeException;
+
+import java.util.Scanner;
+import java.util.concurrent.Executor;
+
+import static io.grpc.Metadata.ASCII_STRING_MARSHALLER;
+import static io.grpc.Status.UNAUTHENTICATED;
+import static java.lang.System.*;
+import static java.util.concurrent.TimeUnit.SECONDS;
+
+public class BaseJavaExample {
+
+    static void addChannelShutdownHook(ManagedChannel channel) {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                channel.shutdown().awaitTermination(1, SECONDS);
+            } catch (InterruptedException ex) {
+                throw new IllegalStateException("Error shutting down gRPC channel.", ex);
+            }
+        }));
+    }
+
+    static String getApiPassword() {
+        Scanner scanner = new Scanner(in);
+        out.println("Enter api password:");
+        var apiPassword = "xyz";    // scanner.nextLine();
+        scanner.close();
+        return apiPassword;
+    }
+
+    static CallCredentials buildCallCredentials(String apiPassword) {
+        return new CallCredentials() {
+            @Override
+            public void applyRequestMetadata(RequestInfo requestInfo,
+                                             Executor appExecutor,
+                                             MetadataApplier metadataApplier) {
+                appExecutor.execute(() -> {
+                    try {
+                        var headers = new Metadata();
+                        var passwordKey = Metadata.Key.of("password", ASCII_STRING_MARSHALLER);
+                        headers.put(passwordKey, apiPassword);
+                        metadataApplier.apply(headers);
+                    } catch (Throwable ex) {
+                        metadataApplier.fail(UNAUTHENTICATED.withCause(ex));
+                    }
+                });
+            }
+
+            @Override
+            public void thisUsesUnstableApi() {
+            }
+        };
+    }
+
+    static void handleError(Throwable t) {
+        if (t instanceof StatusRuntimeException) {
+            var grpcErrorStatus = ((StatusRuntimeException) t).getStatus();
+            err.println(grpcErrorStatus.getCode() + ": " + grpcErrorStatus.getDescription());
+        } else {
+            err.println("Error: " + t);
+        }
+    }
+}
+
+```
+```python
+import grpc
+
+# from getpass import getpass
+import bisq.api.grpc_pb2 as bisq_messages
+import bisq.api.grpc_pb2_grpc as bisq_service
+
+
+def main():
+    grpc_channel = grpc.insecure_channel('localhost:9998')
+    grpc_service_stub = bisq_service.WalletsStub(grpc_channel)
+    api_password: str = 'xyz'  # getpass("Enter API password: ")
+    try:
+        response = grpc_service_stub.GetNetwork.with_call(
+            bisq_messages.GetNetworkRequest(),
+            metadata=[('password', api_password)])
+        print('Response: ' + response[0].network)
+    except grpc.RpcError as rpc_error:
+        print('gRPC API Exception: %s', rpc_error)
+
+
+if __name__ == '__main__':
+    main()
+```
+### Unary RPC
+Get the name of the BTC / BSQ network (mainnet, testnet3, or regtest).
+
+
+### gRPC Request: GetNetworkRequest
+
+This Request has no parameters.
+
+### gRPC Response: GetNetworkReply
+
+Name | Type | Description 
+ ------------- | ------------- | ------------- 
+ network | string | The BTC network name (mainnet, testnet3, or regtest).
 
 ## RPC Method GetTransaction
 ```shell
@@ -6972,7 +7134,7 @@ if __name__ == '__main__':
     main()
 ```
 ### Unary RPC
-Set the Bisq daemon's custom bitcoin miner transaction fee rate, in sats/byte..
+Set the Bisq daemon's custom bitcoin miner transaction fee rate, in sats/byte.
 
 
 ### gRPC Request: SetTxFeeRatePreferenceRequest
@@ -7640,6 +7802,14 @@ Name | Type | Description
  availability_result | [AvailabilityResult](#availabilityresult) | An offer's current status as an eum. 
  description | string | A user friendly description of an offer's current availability status.
 
+## AverageBsqTradePrice
+The average BSQ trade price in USD and BTC.
+
+Name | Type | Description 
+ ------------- | ------------- | ------------- 
+ usdPrice | string | The average BSQ trade price in USD to 4 decimal places. 
+ btcPrice | string | The average BSQ trade price in BTC to 8 decimal places.
+
 ## BalancesInfo
 
 Name | Type | Description 
@@ -7674,7 +7844,6 @@ Name | Type | Description
  mobile_nr | string |
 
 ## BsqBalanceInfo
-TODO Thoroughly review field descriptions.
 
 Name | Type | Description 
  ------------- | ------------- | ------------- 
@@ -7708,7 +7877,6 @@ Name | Type | Description
  swap_peer_payout | uint64 | The amount of the peer's trade payout in satoshis.
 
 ## BtcBalanceInfo
-TODO Thoroughly review field descriptions.
 
 Name | Type | Description 
  ------------- | ------------- | ------------- 
@@ -8000,7 +8168,8 @@ Name | Type | Description
  account_name | string |  
  trade_currencies | [array TradeCurrency](#tradecurrency) |  
  selected_trade_currency | [TradeCurrency](#tradecurrency) |  
- payment_account_payload | [PaymentAccountPayload](#paymentaccountpayload) |
+ payment_account_payload | [PaymentAccountPayload](#paymentaccountpayload) |  
+ extra_data | map&#60;string, string&#62; | todo
 
 ## PaymentAccountPayload
 
