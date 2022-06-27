@@ -7944,8 +7944,8 @@ The average BSQ trade price in USD and BTC.
 
 Name | Type | Description 
  ------------- | ------------- | ------------- 
- usdPrice | string | The average BSQ trade price in USD to 4 decimal places. 
- btcPrice | string | The average BSQ trade price in BTC to 8 decimal places.
+ usd_price | string | The average BSQ trade price in USD to 4 decimal places. 
+ btc_price | string | The average BSQ trade price in BTC to 8 decimal places.
 
 ## BalancesInfo
 
