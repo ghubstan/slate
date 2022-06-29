@@ -2359,7 +2359,8 @@ if __name__ == '__main__':
     main()
 ```
 ### Unary RPC
-Get the v1 protocol offer with offer-id.
+Get the v1 protocol offer with an offer-id.  Your node must have a payment account with the same
+payment method as the offer's associated payment method, e,g., ACH_TRANSFER, CASH_DEPOSIT, etc.
 
 
 ### gRPC Request: GetOfferRequest
@@ -2680,7 +2681,9 @@ if __name__ == '__main__':
     main()
 ```
 ### Unary RPC
-Get all available v1 protocol offers with a BUY (BTC) or SELL (BTC) direction.
+Get all available v1 protocol offers with a BUY (BTC) or SELL (BTC) direction.  The returned offers
+are restricted to those associated with payment methods matching the payment methods you have set up
+on your node, e,g., NATIONAL_BANK, US_POSTAL_MONEY_ORDER, etc.
 
 
 ### gRPC Request: GetOffersRequest
@@ -5180,7 +5183,8 @@ if __name__ == '__main__':
     main()
 ```
 ### Unary RPC
-Take an open offer.
+Take an available offer.  Your node must have a payment account with the same payment method as
+the offer's payment method, e.g., NATIONAL_BANK, SEPA, SWIFT, etc.
 
 
 ### gRPC Request: TakeOfferRequest
