@@ -5222,8 +5222,8 @@ the offer's payment method, e.g., NATIONAL_BANK, SEPA, SWIFT, etc.
 Name | Type | Description 
  ------------- | ------------- | ------------- 
  offer_id | string | The unique identifier of the offer being taken. 
- payment_account_id | string | The unique identifier of the payment account used to take offer. 
- taker_fee_currency_code | string | The code of the currency (BSQ or BTC) used to pay the taker's Bisq trade fee. 
+ payment_account_id | string | The unique identifier of the payment account used to take a Bisq v1 protocol offer.<br/>This payment_account_id request param is not used when taking a BSQ Swap offer;<br/>all BSQ Swap transactions use the daemon's default BsqSwapAccount.<br/> 
+ taker_fee_currency_code | string | The code of the currency (BSQ or BTC) used to pay the taker's Bisq v1 protocol trade fee.<br/>This taker_fee_currency_code request param is not used when taking a BSQ Swap offer;<br/>all BSQ Swap trade fees are paid in BSQ.<br/> 
  amount | uint64 | The trade's intended BTC amount in satoshis.  Ten million satoshis is represented as 10000000.<br/>If set, the takeoffer amount value must be >= offer.min_amount and <= offer.amount.<br/>If not set (0 default), the taken offer's (max) amount becomes the intended trade amount.<br/>
 
 ### gRPC Response: TakeOfferReply
